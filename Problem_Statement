@@ -1,0 +1,153 @@
+ 1. Title
+
+**Freelancer Hiring Platform**
+
+ 2. Domain
+
+**Freelancing / Online Job Marketplace**
+
+3. Who is the User?
+
+ 1. Client
+
+A client is a person or organization looking to hire freelancers for specific projects.
+
+ 2. Freelancer
+
+A freelancer is a professional who offers services based on their skills and experience.
+
+ 3. Admin
+
+The admin manages users, projects, and reported activities on the platform.
+
+ 4. What Problem Are We Solving?
+
+Clients often find it difficult to identify the right freelancer based on skills, experience, budget, and project requirements. Freelancers also face difficulties in finding genuine projects that match their skills. For example, a business owner who needs a website may receive multiple freelancer applications but may not have an organized platform to compare their proposals and profiles. This platform provides a centralized system where clients can post projects, freelancers can submit proposals, and clients can select and hire suitable freelancers.
+
+ 5. Proposed Solution
+
+The application will provide the following features:
+
+ Client
+
+* Register and login
+* Create and manage profile
+* Post projects with requirements, budget, and deadline
+* Search and view freelancer profiles
+* View and manage received proposals
+* Accept or reject proposals
+* Hire freelancers
+* Track project status
+* Give ratings and reviews
+
+ Freelancer
+
+* Register and login
+* Create and manage freelancer profile
+* Add skills and experience
+* Search and filter projects
+* View project details
+* Submit proposals with bid amount and estimated delivery time
+* Track proposal status
+* Manage hired projects
+* Update project status
+* Receive ratings and reviews
+
+ Admin
+
+* Secure admin login
+* Manage users
+* Manage projects
+* Manage reported users/projects
+* Activate or deactivate user accounts
+* Monitor platform activities
+
+ Common Features
+
+* Authentication and authorization
+* Role-based access control
+* Search and filtering
+* Proposal management
+* Project status tracking
+* Ratings and reviews
+* Basic notifications
+
+ 6. Core Entities / Database Tables
+
+1. **User** – Stores user account and role information.
+2. **FreelancerProfile** – Stores freelancer profile, experience, and portfolio details.
+3. **Skill** – Stores available freelancer skills.
+4. **FreelancerSkill** – Maps freelancers with their skills.
+5. **Project** – Stores client project requirements, budget, deadline, and status.
+6. **Proposal** – Stores freelancer proposals submitted for projects.
+7. **Contract** – Stores hiring details between clients and freelancers.
+8. **Review** – Stores ratings and feedback.
+9. **Notification** – Stores user notifications.
+10. **Report** – Stores reported users or projects.
+
+7. User Roles & Permissions
+
+| Role           | Permissions                                                                                                |
+| -------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Client**     | Create/manage projects, view freelancers, review proposals, hire freelancers, track projects, give reviews |
+| **Freelancer** | Manage profile, manage skills, search projects, submit proposals, manage hired projects, give reviews      |
+| **Admin**      | Manage users, projects, reports, and platform activities                                                   |
+
+ Role Restrictions
+
+* Clients can manage only their own projects.
+* Freelancers can manage only their own profiles and proposals.
+* Freelancers cannot apply to their own projects.
+* Only the project owner can accept or reject proposals.
+* Only authorized users can submit reviews.
+* Only Admin can activate or deactivate user accounts.
+
+8. Success Criteria
+
+* A user should be able to register and log in within **1 minute**.
+* A client should be able to create and publish a project within **2 minutes**.
+* A freelancer should be able to search and filter projects easily.
+* A freelancer should be able to submit a proposal within **2 minutes**.
+* A client should be able to review proposals and hire a freelancer through the platform.
+* The system should track projects from **Posted → Hired → In Progress → Completed**.
+* Users should be able to provide ratings and reviews after project completion.
+* Unauthorized users should not be able to access restricted operations.
+* Admin should be able to manage users and reported content.
+
+ 9. Out of Scope
+
+The following features will not be implemented in the initial version:
+
+* Online payment gateway
+* Escrow/payment processing
+* Real-time chat
+* Video/audio calling
+* Mobile application
+* AI-based freelancer recommendations
+* AI-generated proposals
+* Background verification
+* Advanced dispute resolution
+* Tax calculation
+* Multi-currency payments
+* Cryptocurrency payments
+* Advanced time tracking
+* Automated invoice generation
+
+These features may be considered as **future enhancements**.
+`
+10. Chosen Track
+
+**Java (Spring Boot)**
+
+Technology Stack
+
+* **Language:** Java
+* **Framework:** Spring Boot
+* **API:** REST API
+* **Security:** Spring Security + JWT
+* **Database:** MySQL
+* **ORM:** Spring Data JPA / Hibernate
+* **Build Tool:** Maven
+* **API Testing:** Postman
+* **API Documentation:** Swagger / OpenAPI
+* **Version Control:** Git & GitHub
