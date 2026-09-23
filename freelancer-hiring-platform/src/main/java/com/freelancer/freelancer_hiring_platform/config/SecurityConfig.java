@@ -1,4 +1,3 @@
-
 package com.freelancer.freelancer_hiring_platform.config;
 
 import com.freelancer.freelancer_hiring_platform.security.JwtAuthenticationFilter;
@@ -35,20 +34,20 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
-                        // Authentication APIs
                         .requestMatchers("/api/auth/**").permitAll()
 
-                        // User APIs
                         .requestMatchers("/api/users/**").authenticated()
 
-                        // Project APIs
                         .requestMatchers("/api/projects/**").authenticated()
 
-                        // Proposal APIs
                         .requestMatchers(HttpMethod.GET, "/api/proposals/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/proposals/**").hasRole("FREELANCER")
+                        .requestMatchers(HttpMethod.PUT, "/api/proposals/**").hasRole("CLIENT")
 
-                        // Everything else
+                        .requestMatchers("/api/contracts/**").authenticated()
+
+                        .requestMatchers("/api/reviews/**").authenticated()
+
                         .anyRequest().authenticated()
                 )
 
