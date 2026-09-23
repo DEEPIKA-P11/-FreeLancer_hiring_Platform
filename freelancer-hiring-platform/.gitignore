@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+pom-backup.xml
+
+src/main/resources/application.properties
