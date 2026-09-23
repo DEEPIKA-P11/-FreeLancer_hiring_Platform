@@ -36,6 +36,8 @@ public class SecurityConfig {
 
                         .requestMatchers("/api/auth/**").permitAll()
 
+                        .requestMatchers("/error").permitAll()
+
                         .requestMatchers("/api/users/**").authenticated()
 
                         .requestMatchers("/api/projects/**").authenticated()
@@ -47,6 +49,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/contracts/**").authenticated()
 
                         .requestMatchers("/api/reviews/**").authenticated()
+
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated()
                 )
