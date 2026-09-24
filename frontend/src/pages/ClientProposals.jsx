@@ -71,6 +71,25 @@ function ClientProposals() {
     }
   };
 
+  const handleCreateContract = async (proposalId) => {
+    setMessage("");
+    setError("");
+
+    try {
+      await api.post(
+        `/contracts/proposal/${proposalId}`
+      );
+
+      setMessage("Contract created successfully");
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+        err.response?.data ||
+        "Failed to create contract"
+      );
+    }
+  };
+
   return (
     <div className="auth-page">
       <div
@@ -150,6 +169,16 @@ function ClientProposals() {
                     Reject
                   </button>
                 </div>
+              )}
+
+              {proposal.status === "ACCEPTED" && (
+                <button
+                  onClick={() =>
+                    handleCreateContract(proposal.id)
+                  }
+                >
+                  Create Contract
+                </button>
               )}
             </div>
           ))

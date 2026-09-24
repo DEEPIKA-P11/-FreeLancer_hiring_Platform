@@ -21,6 +21,9 @@ import SubmitProposal from "./pages/SubmitProposal";
 import MyProposals from "./pages/MyProposals";
 import ClientProposals from "./pages/ClientProposals";
 
+import ClientContracts from "./pages/ClientContracts";
+import FreelancerContracts from "./pages/FreelancerContracts";
+
 function App() {
   return (
     <BrowserRouter>
@@ -89,6 +92,16 @@ function App() {
         <Route
           path="/client-proposals/:projectId"
           element={<ClientProposals />}
+        />
+
+        <Route
+          path="/client-contracts"
+          element={<ClientContracts />}
+        />
+
+        <Route
+          path="/freelancer-contracts"
+          element={<FreelancerContracts />}
         />
 
       </Routes>

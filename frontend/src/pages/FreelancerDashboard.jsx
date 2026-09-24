@@ -33,7 +33,9 @@ function FreelancerDashboard() {
             <button>My Proposals</button>
           </Link>
 
-          <button>My Contracts</button>
+          <Link to="/freelancer-contracts">
+            <button>My Contracts</button>
+          </Link>
 
           <button>Reviews</button>
 
