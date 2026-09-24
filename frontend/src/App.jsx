@@ -1,4 +1,9 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -6,11 +11,14 @@ import Dashboard from "./pages/Dashboard";
 import ClientDashboard from "./pages/ClientDashboard";
 import FreelancerDashboard from "./pages/FreelancerDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import CreateProject from "./pages/CreateProject";
+import MyProjects from "./pages/MyProjects";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+
         <Route
           path="/"
           element={<Navigate to="/login" replace />}
@@ -45,6 +53,17 @@ function App() {
           path="/admin-dashboard"
           element={<AdminDashboard />}
         />
+
+        <Route
+          path="/create-project"
+          element={<CreateProject />}
+        />
+
+        <Route
+          path="/my-projects"
+          element={<MyProjects />}
+        />
+
       </Routes>
     </BrowserRouter>
   );
