@@ -9,11 +9,13 @@ function Register() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
     role: "CLIENT",
   });
 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     setFormData({
@@ -28,18 +30,67 @@ function Register() {
     setMessage("");
     setError("");
 
+    // Password confirmation
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    // Minimum password length
+    if (formData.password.length < 6) {
+      setError("Password must contain at least 6 characters");
+      return;
+    }
+
+    // Basic name validation
+    if (formData.name.trim().length < 2) {
+      setError("Please enter a valid full name");
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      const response = await api.post("/auth/register", formData);
+      const registerData = {
+        name: formData.name.trim(),
+        email: formData.email.trim().toLowerCase(),
+        password: formData.password,
+        role: formData.role,
+      };
 
-      setMessage(response.data.message || "Registration successful");
+      const response = await api.post(
+        "/auth/register",
+        registerData
+      );
 
+      setMessage(
+        response.data.message ||
+          "OTP sent to your email"
+      );
+
+      // Clear form
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        role: "CLIENT",
+      });
+
+      // Go to OTP verification page
       setTimeout(() => {
-        navigate("/login");
-      }, 1000);
+        navigate(
+          `/verify-otp?email=${encodeURIComponent(registerData.email)}`
+        );
+      }, 800);
     } catch (err) {
       setError(
-        err.response?.data?.message || "Registration failed"
+        err.response?.data?.message ||
+          err.response?.data ||
+          "Registration failed"
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -47,15 +98,19 @@ function Register() {
     <div className="auth-page">
       <div className="auth-card">
         <h1>Freelancer Hiring Platform</h1>
+
         <h2>Create Account</h2>
 
-        <form onSubmit={handleSubmit} className="auth-form">
+        <form
+          onSubmit={handleSubmit}
+          className="auth-form"
+        >
           <label>Full Name</label>
 
           <input
             type="text"
             name="name"
-            placeholder="Enter your name"
+            placeholder="Enter your full name"
             value={formData.name}
             onChange={handleChange}
             required
@@ -83,6 +138,17 @@ function Register() {
             required
           />
 
+          <label>Confirm Password</label>
+
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Re-enter your password"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+          />
+
           <label>Register As</label>
 
           <select
@@ -94,11 +160,27 @@ function Register() {
             <option value="FREELANCER">Freelancer</option>
           </select>
 
-          <button type="submit">Register</button>
+          <button
+            type="submit"
+            disabled={loading}
+          >
+            {loading
+              ? "Sending OTP..."
+              : "Create Account"}
+          </button>
         </form>
 
-        {message && <p>{message}</p>}
-        {error && <p>{error}</p>}
+        {message && (
+          <p style={{ color: "green" }}>
+            {message}
+          </p>
+        )}
+
+        {error && (
+          <p style={{ color: "red" }}>
+            {error}
+          </p>
+        )}
 
         <p>
           Already have an account?{" "}

@@ -1,121 +1,76 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
+// Authentication
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import VerifyOtp from "./pages/VerifyOtp";
 
+// Dashboard
 import Dashboard from "./pages/Dashboard";
 import ClientDashboard from "./pages/ClientDashboard";
 import FreelancerDashboard from "./pages/FreelancerDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 
+// Project
 import CreateProject from "./pages/CreateProject";
 import MyProjects from "./pages/MyProjects";
-
 import FreelancerProjects from "./pages/FreelancerProjects";
+
+// Proposal
 import SubmitProposal from "./pages/SubmitProposal";
 import MyProposals from "./pages/MyProposals";
 import ClientProposals from "./pages/ClientProposals";
 
+// Contract
 import ClientContracts from "./pages/ClientContracts";
 import FreelancerContracts from "./pages/FreelancerContracts";
-
-import ReviewForm from "./pages/ReviewForm";
-import MyReviews from "./pages/MyReviews";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
 
-        <Route
-          path="/"
-          element={<Navigate to="/login" replace />}
-        />
+        {/* Default Route */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
 
-        <Route
-          path="/login"
-          element={<Login />}
-        />
+        {/* Authentication Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/verify-otp" element={<VerifyOtp />} />
 
-        <Route
-          path="/register"
-          element={<Register />}
-        />
-
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
-
-        <Route
-          path="/client-dashboard"
-          element={<ClientDashboard />}
-        />
-
+        {/* Dashboard Routes */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/client-dashboard" element={<ClientDashboard />} />
         <Route
           path="/freelancer-dashboard"
           element={<FreelancerDashboard />}
         />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
 
-        <Route
-          path="/admin-dashboard"
-          element={<AdminDashboard />}
-        />
+        {/* Client Project Routes */}
+        <Route path="/create-project" element={<CreateProject />} />
+        <Route path="/my-projects" element={<MyProjects />} />
 
-        <Route
-          path="/create-project"
-          element={<CreateProject />}
-        />
-
-        <Route
-          path="/my-projects"
-          element={<MyProjects />}
-        />
-
+        {/* Freelancer Project Routes */}
         <Route
           path="/freelancer-projects"
           element={<FreelancerProjects />}
         />
 
-        <Route
-          path="/submit-proposal/:projectId"
-          element={<SubmitProposal />}
-        />
+        {/* Proposal Routes */}
+        <Route path="/submit-proposal" element={<SubmitProposal />} />
+        <Route path="/my-proposals" element={<MyProposals />} />
+        <Route path="/client-proposals" element={<ClientProposals />} />
 
-        <Route
-          path="/my-proposals"
-          element={<MyProposals />}
-        />
-
-        <Route
-          path="/client-proposals/:projectId"
-          element={<ClientProposals />}
-        />
-
-        <Route
-          path="/client-contracts"
-          element={<ClientContracts />}
-        />
-
+        {/* Contract Routes */}
+        <Route path="/client-contracts" element={<ClientContracts />} />
         <Route
           path="/freelancer-contracts"
           element={<FreelancerContracts />}
         />
 
-        <Route
-          path="/write-review/:contractId"
-          element={<ReviewForm />}
-        />
-
-        <Route
-          path="/my-reviews"
-          element={<MyReviews />}
-        />
+        {/* Unknown Route */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
 
       </Routes>
     </BrowserRouter>
