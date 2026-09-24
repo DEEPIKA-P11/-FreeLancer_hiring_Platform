@@ -37,7 +37,9 @@ function FreelancerDashboard() {
             <button>My Contracts</button>
           </Link>
 
-          <button>Reviews</button>
+          <Link to="/my-reviews">
+            <button>My Reviews</button>
+          </Link>
 
           <button onClick={handleLogout}>
             Logout

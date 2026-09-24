@@ -130,6 +130,16 @@ function ClientContracts() {
                   Mark Completed
                 </button>
               )}
+
+              {contract.status === "COMPLETED" && (
+                <div style={{ marginTop: "10px" }}>
+                  <Link to={`/write-review/${contract.id}`}>
+                    <button>
+                      Review Freelancer
+                    </button>
+                  </Link>
+                </div>
+              )}
             </div>
           ))
         )}

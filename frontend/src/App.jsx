@@ -24,6 +24,9 @@ import ClientProposals from "./pages/ClientProposals";
 import ClientContracts from "./pages/ClientContracts";
 import FreelancerContracts from "./pages/FreelancerContracts";
 
+import ReviewForm from "./pages/ReviewForm";
+import MyReviews from "./pages/MyReviews";
+
 function App() {
   return (
     <BrowserRouter>
@@ -102,6 +105,16 @@ function App() {
         <Route
           path="/freelancer-contracts"
           element={<FreelancerContracts />}
+        />
+
+        <Route
+          path="/write-review/:contractId"
+          element={<ReviewForm />}
+        />
+
+        <Route
+          path="/my-reviews"
+          element={<MyReviews />}
         />
 
       </Routes>
