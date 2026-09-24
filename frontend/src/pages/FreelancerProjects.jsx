@@ -2,19 +2,14 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
 
-function MyProjects() {
+function FreelancerProjects() {
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState("");
-
-  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await api.get(
-          `/projects/client/${userId}`
-        );
-
+        const response = await api.get("/projects");
         setProjects(response.data);
       } catch (err) {
         setError(
@@ -25,10 +20,8 @@ function MyProjects() {
       }
     };
 
-    if (userId) {
-      fetchProjects();
-    }
-  }, [userId]);
+    fetchProjects();
+  }, []);
 
   return (
     <div className="auth-page">
@@ -37,13 +30,12 @@ function MyProjects() {
         style={{ maxWidth: "700px" }}
       >
         <h1>Freelancer Hiring Platform</h1>
-
-        <h2>My Projects</h2>
+        <h2>Browse Projects</h2>
 
         {error && <p>{error}</p>}
 
         {projects.length === 0 && !error ? (
-          <p>No projects found.</p>
+          <p>No projects available.</p>
         ) : (
           projects.map((project) => (
             <div
@@ -60,30 +52,27 @@ function MyProjects() {
               <p>{project.description}</p>
 
               <p>
-                <strong>Budget:</strong> ₹
-                {project.budget}
+                <strong>Budget:</strong> ₹{project.budget}
               </p>
 
               <p>
-                <strong>Deadline:</strong>{" "}
-                {project.deadline}
+                <strong>Deadline:</strong> {project.deadline}
               </p>
 
               <p>
-                <strong>Status:</strong>{" "}
-                {project.status}
+                <strong>Status:</strong> {project.status}
               </p>
 
-              <Link
-                to={`/client-proposals/${project.id}`}
-              >
-                <button>View Proposals</button>
-              </Link>
+              {project.status === "POSTED" && (
+                <Link to={`/submit-proposal/${project.id}`}>
+                  <button>Submit Proposal</button>
+                </Link>
+              )}
             </div>
           ))
         )}
 
-        <Link to="/client-dashboard">
+        <Link to="/freelancer-dashboard">
           Back to Dashboard
         </Link>
       </div>
@@ -91,4 +80,4 @@ function MyProjects() {
   );
 }
 
-export default MyProjects;
+export default FreelancerProjects;

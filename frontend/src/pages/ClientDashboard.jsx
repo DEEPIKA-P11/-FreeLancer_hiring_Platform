@@ -33,7 +33,9 @@ function ClientDashboard() {
             <button>My Projects</button>
           </Link>
 
-          <button>Proposals</button>
+          <Link to="/my-projects">
+            <button>Proposals</button>
+          </Link>
 
           <button>Contracts</button>
 

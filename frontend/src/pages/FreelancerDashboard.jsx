@@ -1,9 +1,12 @@
+import { Link, useNavigate } from "react-router-dom";
+
 function FreelancerDashboard() {
   const name = localStorage.getItem("name");
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.clear();
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   return (
@@ -15,16 +18,29 @@ function FreelancerDashboard() {
 
         <p>Welcome, {name}</p>
 
-        <div>
-          <button>Browse Projects</button>
-          <button>My Proposals</button>
-          <button>My Contracts</button>
-          <button>Reviews</button>
-        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+          }}
+        >
+          <Link to="/freelancer-projects">
+            <button>Browse Projects</button>
+          </Link>
 
-        <button onClick={handleLogout}>
-          Logout
-        </button>
+          <Link to="/my-proposals">
+            <button>My Proposals</button>
+          </Link>
+
+          <button>My Contracts</button>
+
+          <button>Reviews</button>
+
+          <button onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );

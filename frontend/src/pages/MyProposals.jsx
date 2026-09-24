@@ -2,31 +2,31 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
 
-function MyProjects() {
-  const [projects, setProjects] = useState([]);
+function MyProposals() {
+  const [proposals, setProposals] = useState([]);
   const [error, setError] = useState("");
 
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
-    const fetchProjects = async () => {
+    const fetchProposals = async () => {
       try {
         const response = await api.get(
-          `/projects/client/${userId}`
+          `/proposals/freelancer/${userId}`
         );
 
-        setProjects(response.data);
+        setProposals(response.data);
       } catch (err) {
         setError(
           err.response?.data?.message ||
           err.response?.data ||
-          "Failed to load projects"
+          "Failed to load proposals"
         );
       }
     };
 
     if (userId) {
-      fetchProjects();
+      fetchProposals();
     }
   }, [userId]);
 
@@ -38,16 +38,16 @@ function MyProjects() {
       >
         <h1>Freelancer Hiring Platform</h1>
 
-        <h2>My Projects</h2>
+        <h2>My Proposals</h2>
 
         {error && <p>{error}</p>}
 
-        {projects.length === 0 && !error ? (
-          <p>No projects found.</p>
+        {proposals.length === 0 && !error ? (
+          <p>No proposals found.</p>
         ) : (
-          projects.map((project) => (
+          proposals.map((proposal) => (
             <div
-              key={project.id}
+              key={proposal.id}
               style={{
                 border: "1px solid #ddd",
                 padding: "18px",
@@ -55,35 +55,36 @@ function MyProjects() {
                 borderRadius: "8px",
               }}
             >
-              <h3>{project.title}</h3>
-
-              <p>{project.description}</p>
-
               <p>
-                <strong>Budget:</strong> ₹
-                {project.budget}
+                <strong>Project ID:</strong>{" "}
+                {proposal.projectId}
               </p>
 
               <p>
-                <strong>Deadline:</strong>{" "}
-                {project.deadline}
+                <strong>Bid Amount:</strong> ₹
+                {proposal.bidAmount}
+              </p>
+
+              <p>
+                <strong>Estimated Days:</strong>{" "}
+                {proposal.estimatedDays}
               </p>
 
               <p>
                 <strong>Status:</strong>{" "}
-                {project.status}
+                {proposal.status}
               </p>
 
-              <Link
-                to={`/client-proposals/${project.id}`}
-              >
-                <button>View Proposals</button>
-              </Link>
+              <p>
+                <strong>Cover Letter:</strong>
+              </p>
+
+              <p>{proposal.coverLetter}</p>
             </div>
           ))
         )}
 
-        <Link to="/client-dashboard">
+        <Link to="/freelancer-dashboard">
           Back to Dashboard
         </Link>
       </div>
@@ -91,4 +92,4 @@ function MyProjects() {
   );
 }
 
-export default MyProjects;
+export default MyProposals;

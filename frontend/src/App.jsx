@@ -7,12 +7,19 @@ import {
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+
 import Dashboard from "./pages/Dashboard";
 import ClientDashboard from "./pages/ClientDashboard";
 import FreelancerDashboard from "./pages/FreelancerDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+
 import CreateProject from "./pages/CreateProject";
 import MyProjects from "./pages/MyProjects";
+
+import FreelancerProjects from "./pages/FreelancerProjects";
+import SubmitProposal from "./pages/SubmitProposal";
+import MyProposals from "./pages/MyProposals";
+import ClientProposals from "./pages/ClientProposals";
 
 function App() {
   return (
@@ -62,6 +69,26 @@ function App() {
         <Route
           path="/my-projects"
           element={<MyProjects />}
+        />
+
+        <Route
+          path="/freelancer-projects"
+          element={<FreelancerProjects />}
+        />
+
+        <Route
+          path="/submit-proposal/:projectId"
+          element={<SubmitProposal />}
+        />
+
+        <Route
+          path="/my-proposals"
+          element={<MyProposals />}
+        />
+
+        <Route
+          path="/client-proposals/:projectId"
+          element={<ClientProposals />}
         />
 
       </Routes>
